@@ -1,5 +1,11 @@
-
-
+// struct Point<T> {
+//     x: T,
+//     y: T
+// }
+struct Point<T, U> {
+    x: T,
+    y: U
+}
 
 fn main() {
    let number_list = vec![1,2,3,4];
@@ -10,6 +16,14 @@ fn main() {
    println!("{}",find_largest_number(&number_list1));
    println!("{}", find_largest_number(&['c', 'b', 'c', 'd', 'a', 'z']));
 
+   // for struct (generic)
+   let point1 = Point { x: 10, y: 20.0 };
+   let point2 = Point { x: 30.8, y: 40 };
+ 
+
+   println!("point1.x = {}, point1.y = {}", point1.x, point1.y);
+   println!("point2.x = {}, point2.y = {}", point2.x, point2.y);
+ 
 
 }
 
