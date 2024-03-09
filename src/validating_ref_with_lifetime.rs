@@ -57,27 +57,49 @@ pub fn longest_string<'a>(x: &'a str, y: &'a str) -> &'a str {
 }
 
 pub fn longest_string2<'a>(x: &'a str, y: &'a str) -> &'a str {
-    
-        let s = "The longest string is long";
-        let str2 = "txy";
-        let result = longest_string(s, str2);
-        println!("The longest str is {}", result);
-        result
-    
-    
+    let s = "The longest string is long";
+    let str2 = "txy";
+    let result = longest_string(s, str2);
+    println!("The longest str is {}", result);
+    result
 }
 
-
-// Lifietime annotation in struct definitions 
+// Lifietime annotation in struct definitions
 struct ImportantExcept<'a> {
     part: &'a str,
 }
 
-pub fn use_important_except () {
+pub fn use_important_except() {
     let novel = "Call me Ishmeal. Some year ago...".to_string();
     let first_sentence = novel.split(".").next().expect("not found '.' ");
     let i = ImportantExcept {
-        part: first_sentence
+        part: first_sentence,
     };
     println!("{}", i.part);
 }
+
+// Lifetime Elision
+
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+    &s[..]
+}
+
+// trait boud and lifetime and generics
+
+use std::fmt::Debug;
+pub fn longest_with_an_announcement<'a, T> (x: &'a str, y: &'a str, ann: T) -> &'a str 
+    where T: Debug
+    {
+        println!("Announcement!: {:?}", ann);
+        if x.len() > y.len() {
+            x
+        } else {
+            y
+        }
+    }

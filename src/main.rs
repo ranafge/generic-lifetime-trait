@@ -46,6 +46,12 @@ fn main() {
     // life tiem in struct type
     println!("Life time in struct : {:?}", validating_ref_with_lifetime::use_important_except());
 
+    println!("announcement in struct : {:?}", validating_ref_with_lifetime::longest_with_an_announcement(
+        "announcement in struct",
+        "ssssssss",
+        "Today is someone's birthday"
+    ));
+
     let x  = "rana";
     let y  = "sharming";
     // longest string function returns longest string between two strings
