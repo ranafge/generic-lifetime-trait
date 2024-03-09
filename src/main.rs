@@ -1,11 +1,10 @@
-
+use generic_trait_lifetime::validating_ref_with_lifetime;
 
 // struct Point<T> {
 //     x: T,
 //     y: T
 // }
 use generic_trait_lifetime::triat_impl::{self, notify, NewsArticle, Summary, Tweet};
-
 
 // Method definitions
 struct Point<T, U> {
@@ -44,7 +43,19 @@ enum Result<T, E> {
     Err(E),
 }
 fn main() {
+    // life tiem in struct type
+    println!("Life time in struct : {:?}", validating_ref_with_lifetime::use_important_except());
 
+    let x  = "rana";
+    let y  = "sharming";
+    // longest string function returns longest string between two strings
+    println!(" longest string function {}", validating_ref_with_lifetime::longest(x, y));
+    // here the above function x and y are live long as long as x and y are validates;
+
+    validating_ref_with_lifetime::invalidating_life_time2();
+    validating_ref_with_lifetime::generic_lifetime_in_function();
+    // validating_ref_with_lifetime::validting_life_time();
+    
     let na = NewsArticle {
         headline: String::from("hello"),
         content: String::from("world"),
@@ -52,17 +63,17 @@ fn main() {
         author: String::from("rust"),
     };
 
-    let tx = Tweet{
+    let tx = Tweet {
         username: String::from("rust"),
         content: String::from("hello"),
         reply: String::from("world"),
-        retweet: false
+        retweet: false,
     };
-    println!("{}",na.summarize());
-    println!("{}",tx.summarize());
+
+    println!("{}", na.summarize());
+    println!("{}", tx.summarize());
     println!("{:?}", notify(&na));
-  
-    
+
     let number_list = vec![1, 2, 3, 4];
 
     let number_list1 = vec![102, 34, 6000, 89, 54, 2, 43, 8];
@@ -75,12 +86,11 @@ fn main() {
     // let point1 = Point { x: 10, y: 20.0 };
     // let point2 = Point { x: 30.8, y: 40 };
     // let point3 = Point { x: 50, y: 60.0 };
-   
 
     // let point4 = point1.mixup(point2);
 
     // println!("point1.x = {}, point1.y = {}", point1.x, point1.y);
- // println!("point2.x = {}, point2.y = {}", point2.x, point2.y);
+    // println!("point2.x = {}, point2.y = {}", point2.x, point2.y);
 }
 
 fn find_largest_number<T: std::cmp::PartialOrd + std::fmt::Debug>(list: &[T]) -> &T {

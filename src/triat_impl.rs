@@ -1,7 +1,7 @@
 use std::fmt::Display;
 
 pub trait Summary {
-    fn summarize(&self) -> String{
+    fn summarize(&self) -> String {
         "default implementation".to_string()
     }
 }
@@ -23,16 +23,15 @@ pub struct Tweet {
     pub username: String,
     pub content: String,
     pub reply: String,
-    pub retweet: bool
+    pub retweet: bool,
 }
 
 impl Summary for Tweet {
     fn summarize(&self) -> String {
-        format!("{} {}" , self.username, self.content)
+        format!("{} {}", self.username, self.content)
     }
 }
 
-pub fn notify<T: Summary >(item:&T) {
+pub fn notify<T: Summary>(item: &T) {
     println!("form notify meto {} ", item.summarize())
 }
-
